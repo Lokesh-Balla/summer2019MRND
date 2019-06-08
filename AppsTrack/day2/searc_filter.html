@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search and Filter</title>
+    <link rel="stylesheet" href="bulma.css"/>
+    <script>
+
+        var names = ['abacinate','abacination','abaciscus','abacist','aback','abactinal','abactinally',
+        'abaction','abactor','abaculus','abacus','abadite','abaff','abaft','hello'];
+
+        function filltext(obj){
+            document.getElementById("searchbox").value=document.getElementById(obj).value
+        }
+
+
+        function moveinlist(evnt){
+            if(evnt.keyCode == 40){
+                evnt.target.nextSibling.focus();
+            }else if(evnt.keyCode == 38){
+                event.target.previousSibling.focus();
+            }else if(evnt.keyCode == 13){
+                document.getElementById("searchbox").value=evnt.target.innerText
+            }
+        }
+
+
+        function checkname(evnt){
+            console.log(evnt)
+            var words=''
+            var name = document.getElementById("searchbox").value
+            if(name==''){
+            document.getElementById("dropdownlist").innerHTML="";
+            document.getElementById("dropdownlist").style.visibility="hidden";
+            return;
+            }
+            if(evnt.keyCode == 40){
+                document.getElementById("lind0").focus();
+                return;
+            }
+            var count=0;
+            var button_index=0;
+            for (x in names){
+                if(names[x].includes(name) && count < 6){
+                    count++;
+                    words+='<li id="lind'+x+'"tabindex="-1" onkeydown="moveinlist(event);"><button type="button" id="bt'+button_index+'" onmouseover="filltext(this.id)" onclick="filltext(this.id)" value='+names[x]+'>'+names[x]+'</button></li>'
+                    button_index++;
+                }
+            }
+            if(words!=''){
+                document.getElementById("dropdownlist").innerHTML=words;
+                document.getElementById("dropdownlist").style.visibility="visible";
+            }
+        }
+
+    </script>
+    <style>
+        body{
+            position:absolute;
+            height:100%;
+            width:100%;
+            background-color: grey;
+        }
+        button {
+            background-color: Transparent;
+            background-repeat:no-repeat;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;
+            outline:none;
+        }
+        #logo{
+            position:absolute;
+            top:35%;
+            left:42%;
+        }
+        #searchdiv{
+            margin-left:25%;
+            margin-top:25%;
+            width:50%;
+        }
+        ol{
+            list-style-type: none;
+        }
+        ol li{
+           color:black;
+        }
+        ol li:hover{
+            background-color: lightgrey;
+        }
+        ol li:focus{
+            background-color: lightgrey;
+        }
+        #dropdownlist{
+            position:relative;
+            background-color: white;
+            margin-top:2%;
+            padding:2%;
+            border: none;
+            visibility:hidden;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<img id="logo" src="logo.png"/>
+<div id="searchdiv">
+    <input class="input is-rounded" type="text" onkeyup="checkname(event)" placeholder="Enter your search text here" id="searchbox">
+    <ol>
+    <div id="dropdownlist">
+    </div>
+    </ol>
+</div>
+</body>
+</html>
