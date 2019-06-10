@@ -1,0 +1,24 @@
+from django.views import View
+from onlineapp import models
+from django.shortcuts import render,get_object_or_404
+
+
+class CollegeView(View):
+    def get(self, request, **kwargs):
+        if kwargs:
+            college = get_object_or_404(models.College, **kwargs)
+            students = college.student_set.order_by("-mocktest1__total")
+            return render(
+                request,
+                template_name='onlineapp/students.html',
+                context={'students': students,
+                         'clg_name': college
+                         },
+            )
+        colleges = models.College.objects.values('id', 'name', 'acronym')
+        return render(
+            request,
+            template_name='onlineapp/colleges.html',
+            context={'colleges': colleges}
+        )
+

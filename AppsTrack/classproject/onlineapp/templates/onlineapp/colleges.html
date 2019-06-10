@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <link rel="stylesheet" href="{% static 'onlineapp/tabstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'onlineapp/bulma.css' %}">
+    <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
+</head>
+<body>
+<a class="button is-rounded" href='{% url "colleges_add" %}'><i class="fas fa-plus"></i>College</a>
+<center>
+<table class="table is-striped is-hoverable">
+    <tr>
+        <th>College Name</th>
+        <th>College Acronym</th>
+        <th></th><th></th>
+    </tr>
+    {%for college in colleges%}
+    <tr>
+        <td><a href="{% url 'students_acronym' college.acronym%}">{{college.name}}</a></td>
+        <td>{{college.acronym}}</td>
+        <td><a href="{% url 'colleges_edit' college.id%}"><i class="fas fa-edit"></i></a></td>
+        <td><a href="{% url 'colleges_delete' college.id%}"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+    {%endfor%}
+</table>
+</center>
+</body>
+</html>

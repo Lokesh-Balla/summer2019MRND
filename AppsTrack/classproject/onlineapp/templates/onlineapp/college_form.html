@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New College</title>
+    <link rel="stylesheet" href="{% static 'onlineapp/formstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'onlineapp/bulma.css' %}">
+</head>
+<body>
+<form method="post" class="box">
+    {%csrf_token%}
+    <label class="label">College Name</label>
+    <div class="field">{{form.name}}</div>
+    <label class="label">Location</label>
+    <div class="field">{{form.location}}</div>
+    <label class="label">College Acronym</label>
+    <div class="field">{{form.acronym}}</div>
+    <label class="label">Contact Email</label>
+    <div class="field">{{form.contact}}</div>
+    <button type="submit" class="button is-info is-rounded">submit</button>
+</form>
+</body>
+</html>

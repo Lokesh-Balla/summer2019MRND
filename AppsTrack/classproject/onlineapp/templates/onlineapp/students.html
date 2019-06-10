@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students Table</title>
+    <link rel="stylesheet" href="{% static 'onlineapp/tabstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'onlineapp/bulma.css' %}">
+    <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
+</head>
+<body>
+<a class="button is-rounded" href='{% url "students_add" clg_name.id%}'><i class="fas fa-plus"></i>Student</a>
+<center>
+<table class="table is-striped is-hoverable">
+    <caption class="title">{{clg_name.name}}</caption>
+    <tr>
+        <th>Student Name</th>
+        <th>Student email</th>
+        <th>Student total</th>
+        <th></th><th></th>
+    </tr>
+    {%for student in students%}
+    <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.mocktest1.total}}</td>
+        <td><a href="{% url 'students_edit' student.id%}"><i class="fas fa-edit"></i></a></td>
+        <td><a href="{% url 'students_delete' student.id%}"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+    {%endfor%}
+</table>
+</center>
+</body>
+</html>
