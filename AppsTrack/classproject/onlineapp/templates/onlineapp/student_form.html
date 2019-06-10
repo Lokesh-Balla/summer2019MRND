@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student form</title>
+    <link rel="stylesheet" href="{% static 'onlineapp/formstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'onlineapp/bulma.css' %}">
+</head>
+<body>
+<form method="post" class="box">
+    {%csrf_token%}
+    <label class="label">Student Name</label>
+    <div class="field">{{form_student.name}}</div>
+    <label class="label">Email</label>
+    <div class="field">{{form_student.email}}</div>
+    <label class="label">DB Folder</label>
+    <div class="field">{{form_student.db_folder}}</div>
+     <label class="label">Dropout</label>
+    <div class="field">{{form_student.dropped_out}}</div>
+    <label class="label">Score 1</label>
+    <div class="field">{{form_marks.problem1}}</div>
+    <label class="label">Score 2</label>
+    <div class="field">{{form_marks.problem2}}</div>
+    <label class="label">Score 3</label>
+    <div class="field">{{form_marks.problem3}}</div>
+    <label class="label">Score 4</label>
+    <div class="field">{{form_marks.problem4}}</div>
+    <button type="submit" class="button is-info is-rounded">submit</button>
+</form>
+</body>
+</html>
