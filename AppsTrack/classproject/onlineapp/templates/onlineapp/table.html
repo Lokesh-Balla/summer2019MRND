@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'onlineapp/tabstyle.css' %}">
+</head>
+<body>
+<table>
+    <tr>
+        <th>College Name</th>
+        <th>College Acronym</th>
+    </tr>
+    {%for college in colleges%}
+    <tr>
+        <td><a href="{% url 'college_student' college.id%}">{{college.name}}</a></td>
+        <td>{{college.acronym}}</td>
+    </tr>
+    {%endfor%}
+</table>
+</body>
+</html>

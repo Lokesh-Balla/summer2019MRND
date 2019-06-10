@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class College(models.Model):
@@ -11,6 +12,7 @@ class College(models.Model):
     def __str__(self):
         return self.acronym
 
+
 class Student(models.Model):
     name = models.CharField(max_length=128)
     dob = models.DateField(null=True, blank=True)
@@ -18,7 +20,7 @@ class Student(models.Model):
     db_folder = models.CharField(max_length=50)
     dropped_out = models.BooleanField(default=False)
 
-    college = models.ForeignKey(College, on_delete=models.CASCADE) #
+    college = models.ForeignKey(College, on_delete=models.CASCADE)  #
 
     def __str__(self):
         return self.name
