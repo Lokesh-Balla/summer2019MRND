@@ -16,9 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
+from todo.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('login/', Login.as_view(), name='login'),
+    path('signup/', Signup.as_view(), name='signup'),
+    path('logout/', Logout.as_view(), name='logout'),
+
+    path('todolistview/', TodoListView.as_view(), name='todolistview'),
+
 ]
 
 if settings.DEBUG:
