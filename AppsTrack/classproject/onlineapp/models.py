@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class College(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True, blank=False, null=False)
     location = models.CharField(max_length=64)
     acronym = models.CharField(max_length=8)
     contact = models.EmailField()

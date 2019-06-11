@@ -9,23 +9,37 @@
     <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
 </head>
 <body>
-<a class="button is-rounded" href='{% url "colleges_add" %}'><i class="fas fa-plus"></i>College</a>
-<center>
+
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="">
+    <i class="fas fa-smile-beam"></i>
+    </a>
+      <a class="button is-small is-light" style="position:absolute;right:0%;margin:1%;" href="{% url 'logout' %}">logout<i class="fa-fw fas fa-sign-out-alt"></i></a>
+  </div>
+</nav>
+<h1 class="title" style="text-align:center;margin-top:1%;"><i class="fas fa-graduation-cap fa-fw"></i>Colleges List</h1>
+{%if perms.onlineapp.add_college%}
+<a class="button is-rounded is-light" id="add_button" href='{% url "colleges_add" %}'><i class="fas fa-plus fa-fw"></i>College</a>
+{% endif %}
 <table class="table is-striped is-hoverable">
     <tr>
         <th>College Name</th>
         <th>College Acronym</th>
+        {% if perms.onlineapp.change_college and perms.onlineapp.delete_college %}
         <th></th><th></th>
+        {% endif %}
     </tr>
     {%for college in colleges%}
     <tr>
         <td><a href="{% url 'students_acronym' college.acronym%}">{{college.name}}</a></td>
         <td>{{college.acronym}}</td>
+        {% if perms.onlineapp.change_college and perms.onlineapp.delete_college %}
         <td><a href="{% url 'colleges_edit' college.id%}"><i class="fas fa-edit"></i></a></td>
         <td><a href="{% url 'colleges_delete' college.id%}"><i class="fas fa-trash-alt"></i></a></td>
+        {% endif %}
     </tr>
     {%endfor%}
 </table>
-</center>
 </body>
 </html>
