@@ -3,9 +3,13 @@ from django.shortcuts import render, redirect
 from onlineapp.forms import *
 from onlineapp.models import *
 from django.urls import resolve
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class StudentAdd(View):
+class StudentAdd(LoginRequiredMixin, PermissionRequiredMixin, View):
+    login_url = 'login'
+    permission_required = ('onlineapp.delete_student', 'onlineapp.add_student', 'onlineapp.change_student')
+
     def get(self, request, **kwargs):
         form_student = AddStudent()
         form_marks = AddMarks()

@@ -9,26 +9,38 @@
     <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
 </head>
 <body>
-<a class="button is-rounded" href='{% url "students_add" clg_name.id%}'><i class="fas fa-plus"></i>Student</a>
-<center>
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="">
+    <i class="fas fa-smile-beam"></i>
+    </a>
+      <a class="button is-small is-light" style="position:absolute;right:0%;margin:1%;" href="{% url 'logout' %}">logout<i class="fa-fw fas fa-sign-out-alt"></i></a>
+  </div>
+</nav>
+<h1 class="title" style="text-align:center;margin-top:1%;">{{clg_name.name}}</h1>
+{%if perms.onlineapp.add_student%}
+<a class="button is-rounded is-light" id="add_button" href='{% url "students_add" clg_name.id%}'><i class="fas fa-plus fa-fw"></i>Student</a>
+{% endif %}
 <table class="table is-striped is-hoverable">
-    <caption class="title">{{clg_name.name}}</caption>
     <tr>
         <th>Student Name</th>
         <th>Student email</th>
         <th>Student total</th>
+        {% if perms.onlineapp.change_student and perms.onlineapp.delete_student %}
         <th></th><th></th>
+        {% endif %}
     </tr>
     {%for student in students%}
     <tr>
         <td>{{student.name}}</td>
         <td>{{student.email}}</td>
         <td>{{student.mocktest1.total}}</td>
+        {% if perms.onlineapp.change_student and perms.onlineapp.delete_student %}
         <td><a href="{% url 'students_edit' student.id%}"><i class="fas fa-edit"></i></a></td>
         <td><a href="{% url 'students_delete' student.id%}"><i class="fas fa-trash-alt"></i></a></td>
+        {% endif %}
     </tr>
     {%endfor%}
 </table>
-</center>
 </body>
 </html>

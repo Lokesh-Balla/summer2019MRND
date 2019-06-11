@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="{% static 'onlineapp/bulma.css' %}">
 </head>
 <body>
+{% if form.errors %}
+<div class="container" style="width:60%">
+<article class="message is-danger">
+    <div class="message-header">
+        <p>Errors</p>
+    </div>
+    <div class="message-body">
+        {{form.errors}}
+    </div>
+</article>
+</div>
+{% endif %}
 <form method="post" class="box">
     {%csrf_token%}
     <label class="label">College Name</label>

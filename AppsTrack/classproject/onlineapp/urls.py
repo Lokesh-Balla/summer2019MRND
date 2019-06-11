@@ -13,6 +13,10 @@ urlpatterns = [
     path('std_add/<int:pk>', StudentAdd.as_view(), name="students_add"),
     path('std_add/<int:pk>/edit', StudentAdd.as_view(), name="students_edit"),
     path('std_add/<int:pk>/delete', StudentAdd.as_view(), name="students_delete"),
+
+    path('login/', LogOn.as_view(), name='login'),
+    path('signup/', Signon.as_view(), name='signup'),
+    path('logout/', Logout.as_view(), name='logout'),
     # path('hello/', views.hello),
     # path('foo/', views.foo),
     # path('clg/', views.clg),
