@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Todo Application</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'todo/bulma.css' %}">
+    <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
+</head>
+<body>
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+            <i class="fas fa-laugh-squint"></i>
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+      </a>
+      <a class="button is-small is-light" style="position:absolute;right:0%;margin:1%;" href="{% url 'logout' %}">
+          logout<i class="fa-fw fas fa-sign-out-alt"></i>
+      </a>
+  </div>
+</nav>
+{% block content %}
+{% endblock content %}
+</body>
+</html>
