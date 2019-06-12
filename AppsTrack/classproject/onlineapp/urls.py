@@ -17,6 +17,9 @@ urlpatterns = [
     path('login/', LogOn.as_view(), name='login'),
     path('signup/', Signon.as_view(), name='signup'),
     path('logout/', Logout.as_view(), name='logout'),
+
+    path('college/api', GetColleges, name='api_get'),
+    path('college/api/<int:pk>', GetColleges, name='api_get_pk'),
     # path('hello/', views.hello),
     # path('foo/', views.foo),
     # path('clg/', views.clg),
