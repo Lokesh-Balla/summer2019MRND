@@ -18,11 +18,9 @@ urlpatterns = [
     path('signup/', Signon.as_view(), name='signup'),
     path('logout/', Logout.as_view(), name='logout'),
 
-    path('college/api', GetColleges, name='api_get'),
-    path('college/api/<int:pk>', GetColleges, name='api_get_pk'),
-    # path('hello/', views.hello),
-    # path('foo/', views.foo),
-    # path('clg/', views.clg),
-    # path('get_all_clgs/', views.get_all_clgs),
-    # path('college_student/<int:id>/', views.college_student, name='college_student'),
+    path('college/api', GetColleges.as_view(), name='api_get_college'),
+    path('college/api/<int:pk>', GetColleges.as_view(), name='api_get_pk_college'),
+
+    path('college/<int:pk>', GetStudents.as_view(), name='api_get_student'), # for get all,delete(give student pk)
+    path('college/<int:pk>/student/<int:spk>', GetStudents.as_view(), name='api_post_student'), # for get one,put
 ]
