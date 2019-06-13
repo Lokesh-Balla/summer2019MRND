@@ -25,7 +25,12 @@ urlpatterns = [
     path('signup/', Signup.as_view(), name='signup'),
     path('logout/', Logout.as_view(), name='logout'),
 
-    path('todolistview/', TodoListView.as_view(), name='todolistview'),
+    path('todolistview/<int:pk>', TodoListView.as_view(), name='todolistview'),
+    path('todolistview/<int:pk>/add', TodoListAdd.as_view(), name='todolistadd'),
+    path('todolistview/<int:pk>/edit/<int:epk>', TodoListAdd.as_view(), name='todolistedit'),
+    path('todolistview/<int:pk>/delete/<int:epk>', TodoListAdd.as_view(), name='todolistdelete'),
+
+    path('todoitemview/<int:epk>', TodoItemView.as_view(), name='todoitemview'),
 
 ]
 

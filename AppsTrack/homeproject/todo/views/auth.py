@@ -29,7 +29,8 @@ class Login(View):
             )
             if user is not None:
                 login(request, user)
-                return redirect('todolistview')
+                userdata = User.objects.get(username=form.cleaned_data['username'])
+                return redirect('todolistview', userdata.id)
             else:
                 messages.error(request, "Invalid Login Credentials")
                 return render(

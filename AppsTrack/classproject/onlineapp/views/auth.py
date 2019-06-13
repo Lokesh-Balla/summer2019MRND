@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.utils import *
+from django.http import HttpResponse
 from django.urls import resolve
 
 
@@ -24,7 +25,7 @@ class LogOn(View):
     def post(self, request):
         form = Log_in(request.POST)
         if form.is_valid():
-            user = authenticate(request,username=form.cleaned_data['username'],password=form.cleaned_data['password'])
+            user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
         if user is not None:
             login(request, user)
             return redirect('colleges')
@@ -57,7 +58,7 @@ class Signon(View):
                 user = User.objects.create_user(**form.cleaned_data)
                 user.save()
             except IntegrityError as ie:
-                messages.error(request,ie)
+                messages.error(request, ie)
                 return render(
                     request,
                     template_name='onlineapp/signup.html',
@@ -71,8 +72,11 @@ class Signon(View):
             return redirect('colleges')
 
 
-
 class Logout(View):
     def get(self, request):
         logout(request)
         return redirect('login')
+
+
+def first_app(request):
+    return HttpResponse("first response")

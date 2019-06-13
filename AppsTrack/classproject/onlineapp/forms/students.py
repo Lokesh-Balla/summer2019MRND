@@ -7,7 +7,7 @@ class AddStudent(forms.ModelForm):
         model = Student
         exclude = ['id', 'college']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'input', 'palceholder': 'enter the name'}),
+            'name': forms.TextInput(attrs={'class': 'input', 'placeholder': 'enter the name'}),
             'dob': forms.DateInput(),
             'email': forms.EmailInput(attrs={'class': 'input', 'placeholder': 'enter the email'}),
             'db_folder': forms.TextInput(attrs={'class': 'input', 'placeholder': 'enter the db folder'}),

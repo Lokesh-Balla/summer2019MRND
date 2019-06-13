@@ -23,4 +23,6 @@ urlpatterns = [
 
     path('college/<int:pk>', GetStudents.as_view(), name='api_get_student'), # for get all,delete(give student pk)
     path('college/<int:pk>/student/<int:spk>', GetStudents.as_view(), name='api_post_student'), # for get one,put
+
+    path('yay', first_app),
 ]
