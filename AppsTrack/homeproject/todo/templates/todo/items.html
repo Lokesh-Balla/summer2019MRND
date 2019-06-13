@@ -1,0 +1,20 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+<a class="button is-light" href="#" style="margin-left:20%;margin-top:3%;">
+    <span class="icon is-small"><i class="fas fa-plus"></i></span>
+    <span>New Item</span>
+</a>
+<table class="table is-hoverable" style="width:60%;margin-left:20%;">
+    <tr>
+        <th><i class="fas fa-tasks"></i></th>
+        <th>Description</th>
+        <th>Due Date</th>
+    </tr>
+    {% for lst in form %}
+    <tr>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

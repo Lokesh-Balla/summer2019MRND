@@ -1,0 +1,26 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+<a class="button is-light" href="{% url 'todolistadd' pk %}" style="margin-left:20%;margin-top:3%;">
+    <span class="icon is-small">
+      <i class="fas fa-plus"></i>
+    </span>
+    <span>New List</span>
+  </a>
+<table class="table is-hoverable" style="width:60%;margin-left:20%;">
+    <tr>
+        <th>Name</th>
+        <th>Creation on</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for lst in todolists %}
+    <tr>
+        <td>{{ lst.name }}</td>
+        <td>{{ lst.created }}</td>
+        <td><a href="{% url 'todolistedit' pk lst.id %}"><i class="fas fa-edit"></i></a></td>
+        <td><a href="{% url 'todolistdelete' pk lst.id %}"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
