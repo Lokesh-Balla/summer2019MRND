@@ -77,6 +77,3 @@ class Logout(View):
         logout(request)
         return redirect('login')
 
-
-def first_app(request):
-    return HttpResponse("first response")

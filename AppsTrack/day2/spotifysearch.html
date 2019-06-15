@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Search</title>
+    <link rel="stylesheet" href="bulma.css"/>
+    <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
+    <style>
+        html{
+            background-image: linear-gradient(to right, #00ff94 , #00ffed);
+            }
+        #searchbox{
+            width:40%;
+            margin-left:30%;
+        }
+        #searchdiv{
+            margin-top:3%;
+        }
+
+    </style>
+    <script>
+        function display_grid(data){
+            var store='';
+            for(x of data.artists.items){
+                try{
+                    img_link=x.images[0].url
+                }
+                catch{
+                    img_link="";
+                }
+                store+=`
+                <div class="card column is-one-fifth" style="margin:1%;">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="`+img_link+`" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">`+x.name+`</p>
+                                <p class="subtitle is-6">`+x.type+`</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }
+        document.getElementById("cdata").innerHTML=store;
+        }
+
+        function search(){
+            if(event.keyCode==13 || event.type=='click'){
+                var store;
+                var name = document.getElementById("searchbox").value;
+                const myHeaders = new Headers();
+                var url="https://api.spotify.com/v1/search?q="+name+"&type=artist";
+                var token="BQDQUX5CNwCQmopoVuXpmnw_LvWeaMapDyvURpimOqXy6ARThySUNnyxeshlsLyBcjkENkcNrPwcD1OQGyifs4emIX6NpanyD6zryIVAu1ZJZ_o3hxsiNFlNw08hNoBr-G-qWRviQnTWUreZgiYyxFaiFFDgEwtwMw";
+                myHeaders.append('Content-Type', 'application/json');
+                myHeaders.append('Authorization', 'Bearer '+token);
+                fetch(url, {
+                    method:'GET',
+                    headers:myHeaders,
+                })
+                .then(data=>data.json())
+                .then(data=>{
+                    store=data;
+                    //console.log(data);
+                    display_grid(store);
+                });
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="searchdiv">
+    <input class="input is-rounded is-dark" type="text" onkeyup="search()" placeholder="Enter your search text here"
+           id="searchbox">
+    <span><button onclick="search()" class="button is-rounded is-dark"><i class="fas fa-search"></i></button></span></input>
+</div>
+<div id="cdata" class="columns is-multiline" style="margin-top:2%;margin-left:6%;">
+</div>
+</body>
+</html>

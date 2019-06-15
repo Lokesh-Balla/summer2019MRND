@@ -53,6 +53,7 @@
             }
         }
 
+
     </script>
     <style>
         body{
@@ -84,6 +85,7 @@
         }
         ol li{
            color:black;
+           outline: none;
         }
         ol li:hover{
             background-color: lightgrey;
@@ -100,16 +102,18 @@
             visibility:hidden;
             border-radius: 10px;
         }
+
     </style>
 
 </head>
 <body>
 <img id="logo" src="logo.png"/>
 <div id="searchdiv">
-    <input class="input is-rounded" type="text" onkeyup="checkname(event)" placeholder="Enter your search text here" id="searchbox">
+    <input class="input is-rounded" type="text" onkeyup="checkname(event)" placeholder="Enter your search text here"
+           id="searchbox">
     <ol>
-    <div id="dropdownlist">
-    </div>
+        <div id="dropdownlist">
+        </div>
     </ol>
 </div>
 </body>
