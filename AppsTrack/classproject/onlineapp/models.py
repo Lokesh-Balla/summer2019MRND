@@ -1,4 +1,5 @@
 from django.db import models
+from rest_framework.authentication import TokenAuthentication
 
 
 # Create your models here.
@@ -42,3 +43,7 @@ class MockTest1(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=40)
     college = models.ForeignKey(College, on_delete=models.CASCADE)
+
+
+class BearerAuthentication(TokenAuthentication, models.Model):
+    keyword = 'Bearer'

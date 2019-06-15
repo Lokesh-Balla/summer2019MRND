@@ -2,9 +2,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from onlineapp.serializers import *
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class GetColleges(APIView):
+    authentication_classes = (JWTAuthentication, BearerAuthentication, BasicAuthentication,
+                              SessionAuthentication, TokenAuthentication)
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, **kwargs):
         if kwargs:
             colleges = College.objects.all().filter(**kwargs)
@@ -42,6 +49,10 @@ class GetColleges(APIView):
 
 
 class GetStudents(APIView):
+    authentication_classes = (
+        JWTAuthentication, BearerAuthentication, BasicAuthentication, SessionAuthentication, TokenAuthentication)
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, **kwargs):
         if kwargs.get("spk"):
             students = Student.objects.filter(pk=kwargs['spk'])
