@@ -31,7 +31,10 @@ urlpatterns = [
     path('todolistview/<int:pk>/delete/<int:epk>', TodoListAdd.as_view(), name='todolistdelete'),
 
     path('todoitemview/<int:epk>', TodoItemView.as_view(), name='todoitemview'),
-
+    path('todoitemview/<int:epk>/<int:ipk>', TodoItemCheck.as_view(), name='todoitemcheck'),
+    path('todoitemview/<int:epk>/add', TodoItemAdd.as_view(), name='todoitemadd'),
+    path('todoitemview/<int:epk>/edit/<int:ipk>', TodoItemAdd.as_view(), name='todoitemedit'),
+    path('todoitemview/<int:epk>/delete/<int:ipk>', TodoItemAdd.as_view(), name='todoitemdelete'),
 ]
 
 if settings.DEBUG:

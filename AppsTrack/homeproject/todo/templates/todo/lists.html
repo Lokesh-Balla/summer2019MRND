@@ -16,7 +16,7 @@
     </tr>
     {% for lst in todolists %}
     <tr>
-        <td>{{ lst.name }}</td>
+        <td><a href="{% url 'todoitemview' lst.id %}">{{ lst.name }}</a></td>
         <td>{{ lst.created }}</td>
         <td><a href="{% url 'todolistedit' pk lst.id %}"><i class="fas fa-edit"></i></a></td>
         <td><a href="{% url 'todolistdelete' pk lst.id %}"><i class="fas fa-trash-alt"></i></a></td>
