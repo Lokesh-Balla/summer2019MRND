@@ -1,0 +1,14 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+
+<form method="post" class="form box">
+    {% csrf_token %}
+    <div class="label">Description</div>
+    <div>{{form.description}}</div>
+    <div class="label">due_date</div>
+    <div>{{form.due_date}}</div>
+    <button type="submit" class="button is-light">submit</button>
+</form>
+
+{% endblock content %}

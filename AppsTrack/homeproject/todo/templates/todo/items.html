@@ -1,7 +1,11 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
-<a class="button is-light" href="#" style="margin-left:20%;margin-top:3%;">
+<a class="button is-light" href="{% url 'todolistview' pk %}" style="margin-left:20%;margin-top:3%;">
+    <span class="icon is-small"><i class="fas fa-arrow-circle-left"></i></span>
+    <span>Back</span>
+</a>
+<a class="button is-light" href="{% url 'todoitemadd' epk %}" style="margin-top:3%;">
     <span class="icon is-small"><i class="fas fa-plus"></i></span>
     <span>New Item</span>
 </a>
@@ -10,11 +14,31 @@
         <th><i class="fas fa-tasks"></i></th>
         <th>Description</th>
         <th>Due Date</th>
+        <th></th><th></th>
     </tr>
     {% for lst in form %}
     <tr>
-
+        <td>
+            <form method="post" action="{% url 'todoitemcheck' epk lst.id %}" id="check{{ lst.id }}">
+                {% csrf_token %}
+                <input type="checkbox" {% if lst.completed %} checked="{{ lst.completed }}" {% endif %}
+                       value="check{{ lst.id }}" onclick="submitcheck{{lst.id}}();">
+            </form>
+        </td>
+        <td>{{ lst.description }}</td>
+        <td>{{ lst.due_date }}</td>
+        <td><a href="{% url 'todoitemedit' epk lst.id %}"><i class="fas fa-edit"></i></a></td>
+        <td><a href="{% url 'todoitemdelete' epk lst.id %}"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
     {% endfor %}
 </table>
+<script type="text/javascript">
+    {% for lst in form %}
+    function submitcheck{{lst.id}}(){
+        var id_value="check{{lst.id}}";
+        document.getElementById(id_value).submit();
+    }
+    {% endfor %}
+
+</script>
 {% endblock content %}

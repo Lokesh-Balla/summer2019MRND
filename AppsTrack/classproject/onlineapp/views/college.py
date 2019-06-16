@@ -11,7 +11,6 @@ class CollegeView(LoginRequiredMixin, View):
         if kwargs:
             college = get_object_or_404(models.College, **kwargs)
             students = college.student_set.order_by("-mocktest1__total")
-            per=request.user.get_all_permissions()
             return render(
                 request,
                 template_name='onlineapp/students.html',

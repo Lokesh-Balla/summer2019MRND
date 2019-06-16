@@ -5,8 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.utils import *
-from django.http import HttpResponse
-from django.urls import resolve
 
 
 class LogOn(View):

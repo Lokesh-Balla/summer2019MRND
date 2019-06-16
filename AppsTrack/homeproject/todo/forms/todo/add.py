@@ -18,6 +18,6 @@ class TodoItemForm(forms.ModelForm):
         exclude = ['list_name']
         widgets = {
             'description': forms.TextInput(attrs={'class': 'input', 'placeholder': 'description for the item'}),
-            'due_date': forms.DateTimeInput(attrs={'class': 'input', 'placeholder': 'due date'}),
+            'due_date': forms.DateTimeInput(attrs={'class': 'date', 'placeholder': 'due date'}),
             'completed': forms.CheckboxInput(attrs={'class': 'checkbox', 'placeholder': 'check the box if complete'}),
         }
