@@ -1,0 +1,210 @@
+{% extends "ipl/base.html" %}
+
+{% block content %}
+<div class="box" style="background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);">
+    <table class="table is-narrow" style="margin-left:10%;
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);">
+        <tr>
+            <th>Toss Winner :</th>
+            <td>{{ info.0 }}</td>
+            <th>Toss Decision :</th>
+            <td>{{ info.1 }}</td>
+            <th>Winner :</th>
+            <td>{{ info.2 }}</td>
+            <th>Player of the Match :</th>
+            <td>{{ info.3 }}</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a class="button is-dark is-small" href="{% url 'seasonsview' year %}" style="margin-left:10%;">
+        <span class="icon is-small"><i class="fas fa-arrow-circle-left"></i></span>
+        <span>Back</span>
+    </a>
+    <table class="table is-narrow" style="margin-left:10%">
+        <tr>
+            <th>Team 1 :</th>
+            <td>{{ in1.0.battingTeam }}</td>
+            <th>Total Score :</th>
+            <td>{{ score.0.count}}</td>
+            <th>Runs Conceded :</th>
+            <td>{{ score.1.extra }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Top Scorer :</th>
+            {% for lst in topScorersTeam1 %}
+                <td>{{ lst.batsman }}</td>
+                <td>{{ lst.count }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Top Wicket Taker</th>
+            {% for lst in topWicketTakersTeam1 %}
+                <td>{{ lst.bowler }}</td>
+                <td>{{ lst.count }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Team 2 :</th>
+            <td>{{ in1.0.bowlingTeam }}</td>
+            <th>Total Score :</th>
+            <td>{{ score.1.count}}</td>
+            <th>Runs Conceded :</th>
+            <td>{{ score.0.extra }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Top Scorer :</th>
+            {% for lst in topScorersTeam2 %}
+                <td>{{ lst.batsman }}</td>
+                <td>{{ lst.count }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Top Wicket Taker</th>
+            {% for lst in topWicketTakersTeam2 %}
+                <td>{{ lst.bowler }}</td>
+                <td>{{ lst.count }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+
+
+<button class="collapsible">Inning 1 {{ in1.0.battingTeam }} is Batting</button>
+<div class="content">
+    <table class="table is-striped is-hoverable" style="margin-left:10%;width:80%;">
+        <tr>
+            <th>over</th>
+            <th>ball</th>
+            <th>Runs</th>
+            <th>Batsman</th>
+            <th>non striker</th>
+            <th>bowler</th>
+            <th>Player Dismissed</th>
+            <th>Dismissal Kind</th>
+            <th>Fielder</th>
+        </tr>
+        {% for lst in in1 %}
+        <tr>
+            <td>{{ lst.over }}</td>
+            <td>{{ lst.ball }}</td>
+            <td>{{ lst.totalRuns }}</td>
+            <td>{{ lst.batsman }}</td>
+            <td>{{ lst.nonStriker }}</td>
+            <td>{{ lst.bowler }}</td>
+            <td>{{ lst.playerDismissed }}</td>
+            <td>{{ lst.DismissalKind }}</td>
+            <td>{{ lst.fielder }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<button class="collapsible">Inning 2 {{ in2.0.battingTeam }} is Batting</button>
+<div class="content">
+    <table class="table is-striped is-hoverable" style="margin-left:10%;width:80%;">
+        <tr>
+            <th>over</th>
+            <th>ball</th>
+            <th>Runs</th>
+            <th>Batsman</th>
+            <th>non striker</th>
+            <th>bowler</th>
+            <th>Player Dismissed</th>
+            <th>Dismissal Kind</th>
+            <th>Fielder</th>
+        </tr>
+        {% for lst in in2 %}
+        <tr>
+            <td>{{ lst.over }}</td>
+            <td>{{ lst.ball }}</td>
+            <td>{{ lst.totalRuns }}</td>
+            <td>{{ lst.batsman }}</td>
+            <td>{{ lst.nonStriker }}</td>
+            <td>{{ lst.bowler }}</td>
+            <td>{{ lst.playerDismissed }}</td>
+            <td>{{ lst.DismissalKind }}</td>
+            <td>{{ lst.fielder }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% if superover == 1 %}
+<button class="collapsible">Inning 3 {{ in3.0.battingTeam }} is Batting</button>
+<div class="content">
+    <table class="table is-striped is-hoverable" style="margin-left:10%;width:80%;">
+        <tr>
+            <th>over</th>
+            <th>ball</th>
+            <th>Runs</th>
+            <th>Batsman</th>
+            <th>non striker</th>
+            <th>bowler</th>
+            <th>Player Dismissed</th>
+            <th>Dismissal Kind</th>
+            <th>Fielder</th>
+        </tr>
+        {% for lst in in3 %}
+        <tr>
+            <td>{{ lst.over }}</td>
+            <td>{{ lst.ball }}</td>
+            <td>{{ lst.totalRuns }}</td>
+            <td>{{ lst.batsman }}</td>
+            <td>{{ lst.nonStriker }}</td>
+            <td>{{ lst.bowler }}</td>
+            <td>{{ lst.playerDismissed }}</td>
+            <td>{{ lst.DismissalKind }}</td>
+            <td>{{ lst.fielder }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<button class="collapsible">Inning 4 {{ in4.0.battingTeam }} is Batting</button>
+<div class="content">
+    <table class="table is-striped is-hoverable" style="margin-left:10%;width:80%;">
+        <tr>
+            <th>over</th>
+            <th>ball</th>
+            <th>Runs</th>
+            <th>Batsman</th>
+            <th>non striker</th>
+            <th>bowler</th>
+            <th>Player Dismissed</th>
+            <th>Dismissal Kind</th>
+            <th>Fielder</th>
+        </tr>
+        {% for lst in in4 %}
+        <tr>
+            <td>{{ lst.over }}</td>
+            <td>{{ lst.ball }}</td>
+            <td>{{ lst.totalRuns }}</td>
+            <td>{{ lst.batsman }}</td>
+            <td>{{ lst.nonStriker }}</td>
+            <td>{{ lst.bowler }}</td>
+            <td>{{ lst.playerDismissed }}</td>
+            <td>{{ lst.DismissalKind }}</td>
+            <td>{{ lst.fielder }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+
+</script>
+{% endblock content %}
