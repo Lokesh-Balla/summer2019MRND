@@ -1,0 +1,111 @@
+{% extends "ipl/stemp.html" %}
+
+{% block table %}
+<table class="table is-striped is-hoverable" id="table_items" style="margin-left:10%;width:80%">
+    <tr>
+        <th>Team 1</th>
+        <th>Team 2</th>
+        <th>City</th>
+        <th>Toss Winner</th>
+        <th>Toss Decision</th>
+        <th>Winner</th>
+        <th>Player of the Match</th>
+        <th></th>
+    </tr>
+    {% for lst in tables %}
+    <tr style="display:none">
+        <td>{{ lst.0 }}</td>
+        <td>{{ lst.1 }}</td>
+        <td>{{ lst.2 }}</td>
+        <td>{{ lst.3 }}</td>
+        <td>{{ lst.4 }}</td>
+        <td>{{ lst.5 }}</td>
+        <td>{{ lst.6 }}</td>
+        <td><a href="{% url 'matchview' year lst.7 %}" class="button is-dark">Match Details</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="width:80%;margin-left:10%;">
+    <button class="pagination-previous" id="pagination-pre" onclick="changePage(0,0,1);" disabled>Previous</button>
+    <button class="pagination-next" id="pagination-nxt" onclick="changePage(0,1,0);">Next page</button>
+    <ul class="pagination-list" id="pglist"></ul>
+</nav>
+<script>
+
+    let current_page = 1;
+    let max_pages = 0;
+
+    function changePage(start, next, previous) {
+
+        if (next != 0 || previous != 0) {
+            if (next == 1) {
+                return changePage((current_page * 8), 0, 0);
+            } else {
+                return changePage((current_page * 8) - 16, 0, 0);
+            }
+        }
+        current_page = (start / 8) + 1;
+        let i = 0;
+        for (let row of table_items.rows) {
+            if (i == 0) {
+                row.style.display = "inherit";
+                i += 1;
+                continue;
+            }
+            if (i >= start && i < 8 + start) {
+                row.style.display = "inherit";
+            } else {
+                row.style.display = "none";
+            }
+            i += 1;
+        }
+        i = 0;
+        while (document.getElementById("cp" + i)) {
+            document.getElementById("cp" + i).classList.remove("is-current");
+            i += 8;
+        }
+
+        document.getElementById("cp" + start).classList.add("is-current");
+        if (current_page == 1) {
+            document.getElementById("pagination-pre").disabled = true;
+            document.getElementById("pagination-nxt").disabled = false;
+        } else if (current_page == Math.floor(max_pages)) {
+            document.getElementById("pagination-nxt").disabled = true;
+            document.getElementById("pagination-pre").disabled = false;
+        } else {
+            document.getElementById("pagination-pre").disabled = false;
+            document.getElementById("pagination-nxt").disabled = false;
+        }
+    }
+
+
+    function displayPagination() {
+        for (let row of table_items.rows) {
+            max_pages += 1;
+        }
+        if (max_pages % 8 == 0) {
+            max_pages = max_pages / 8;
+        } else {
+            max_pages = (max_pages / 8) + 1;
+        }
+        var page_link = '';
+        for (let i = 1; i <= max_pages; i++) {
+            page_link += `
+                <li>
+                    <button class="pagination-link" id="cp` + 8 * (i - 1) + `" onclick="changePage(` + 8 * (i - 1) + `,0,0);" >` + i + `</button>
+                </li>
+            `;
+        }
+        document.getElementById("pglist").innerHTML = page_link;
+    }
+
+    function start() {
+        displayPagination();
+        changePage(0, 0, 0);
+    }
+
+    window.onload = start();
+
+
+</script>
+{% endblock table %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL For Life</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ipl/bulma.css' %}">
+    <script src="https://kit.fontawesome.com/eacf24cabc.js"></script>
+    <style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 80%;
+  margin-left: 10%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'seasonsview' 2019%}">
+            <img src="{% static 'ipl/logo.png' %}" alt="Ipl Logo">
+        </a>
+
+        <a href="{% url 'pointsview' 2019 %}" class="navbar-item">
+            Points
+        </a>
+        <a href="{% url 'seasonsview' 2019 %}" class="navbar-item">
+            Seasons
+        </a>
+        {% if user.is_authenticated %}
+        <a class="button is-small is-light" style="position:absolute;right:0%;margin:1%;" href="{% url 'logout' %}">logout<i
+                class="fa-fw fas fa-sign-out-alt"></i></a>
+        {% else %}
+        <a class="button is-small is-light" style="position:absolute;right:0%;margin:1%;"
+           href="{% url 'login' %}"><i class="fa-fw fas fa-user"></i>login</a>
+        {% endif %}
+    </div>
+</nav>
+{% block content %}
+{% endblock content %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "ipl/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+<div class="container">
+
+    <ul class="message is-danger">
+    <div class="message-header is-danger">Error</div>{% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+<h1 class="title" style="position:relative;text-align:center;margin-top:10%">Login</h1>
+<form method="post" class="box"  style="width:30%;margin-left:35%;">
+    {%csrf_token%}
+    <label class="label">Username</label>
+    <div class="field">{{form.username}}</div>
+    <label class="label">Password</label>
+    <div class="field">{{form.password}}</div>
+    <button type="submit" class="button is-rounded is-info">Login</button>
+    <a href="{% url 'signup'%}" class="button is-text">click here to SignUp</a>
+</form>
+
+{% endblock content %}

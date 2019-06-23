@@ -1,0 +1,16 @@
+{% extends "ipl/stemp.html" %}
+
+{% block table %}
+<table class="table is-striped is-hoverable" id="table_items" style="margin-left:10%;width:80%">
+    <tr>
+        <th>Team</th>
+        <th>Points</th>
+    </tr>
+    {% for lst in teams %}
+    <tr>
+        <td>{{ lst.name }}</td>
+        <td>{{ lst.score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock table %}
